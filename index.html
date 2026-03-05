@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Installation Quotation Builder - N Square Energy</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container no-print">
+        <header class="app-header">
+            <h1>Solar Quotation Builder</h1>
+            <div class="actions">
+                <button id="generateBtn" class="btn btn-primary">Generate Quotation</button>
+                <button id="printBtn" class="btn btn-secondary">Print Quotation</button>
+                <button id="downloadBtn" class="btn btn-secondary">Download PDF</button>
+            </div>
+        </header>
+
+        <main class="editor-area">
+            <!-- Customer Details Input -->
+            <section class="form-section">
+                <h2>Customer Details</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" id="customerNameInput" placeholder="Enter customer name">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="locationInput" placeholder="Enter location">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="dateInput">
+                    </div>
+                </div>
+            </section>
+
+            <!-- System Specifications Input -->
+            <section class="form-section">
+                <h2>System Specifications</h2>
+                <div class="table-container">
+                    <table id="specsTable">
+                        <thead>
+                            <tr>
+                                <th>Specification</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>System Capacity</td>
+                                <td><input type="text" id="spec-capacity" value="3 KW"></td>
+                            </tr>
+                            <tr>
+                                <td>Solar Panel Model</td>
+                                <td><input type="text" id="spec-panel-model" value="Adani"></td>
+                            </tr>
+                            <tr>
+                                <td>Number of Panels</td>
+                                <td><input type="text" id="spec-panel-count" value="6"></td>
+                            </tr>
+                            <tr>
+                                <td>Inverter Brand / Model</td>
+                                <td><input type="text" id="spec-inverter-brand" value="Polycab"></td>
+                            </tr>
+                            <tr>
+                                <td>Inverter Capacity</td>
+                                <td><input type="text" id="spec-inverter-capacity" value="5 KW"></td>
+                            </tr>
+                            <tr>
+                                <td>Structure Material</td>
+                                <td><input type="text" id="spec-structure" value="GI"></td>
+                            </tr>
+                            <tr>
+                                <td>Wire Brand</td>
+                                <td><input type="text" id="spec-wire" value="Polycab"></td>
+                            </tr>
+                            <tr>
+                                <td>Earthing System</td>
+                                <td><input type="text" id="spec-earthing" value="3 Earthing"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Project Cost Input -->
+            <section class="form-section">
+                <h2>Total Project Cost (Including GST)</h2>
+                <div class="cost-input-wrapper">
+                    <div class="cost-input">
+                        <span>₹</span>
+                        <input type="number" id="projectCostInput" placeholder="Enter total cost" value="198000">
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Print Preview Area (Hidden in screen mode, shown in print) -->
+    <div id="quotationPreview">
+        <div class="preview-actions no-print">
+            <button id="backBtn" class="btn btn-secondary">← Back to Editor</button>
+            <button id="printPreviewBtn" class="btn btn-primary">Print Now</button>
+        </div>
+        <div class="quotation-page">
+            <div class="quotation-header">
+                <div class="header-left">
+                    <img src="logo.png" alt="N Square Energy Logo" class="company-logo">
+                </div>
+                <div class="header-right">
+                    <h2 class="company-brand">N SQUARE ENERGY</h2>
+                    <p class="company-phone">+91 8838098525</p>
+                </div>
+            </div>
+
+            <div class="quotation-title-container">
+                <h1 class="quotation-title">SOLAR INSTALLATION QUOTATION</h1>
+                <p class="quotation-no">Quotation No: <span id="quotationNoDisplay">QT001</span></p>
+            </div>
+
+            <div class="section-title">Customer Details</div>
+            <table class="details-table">
+                <tr>
+                    <td class="label">Customer Name:</td>
+                    <td id="previewCustomerName"></td>
+                </tr>
+                <tr>
+                    <td class="label">Location:</td>
+                    <td id="previewLocation"></td>
+                </tr>
+                <tr>
+                    <td class="label">Date:</td>
+                    <td id="previewDate"></td>
+                </tr>
+            </table>
+
+            <div class="section-title">System Specifications</div>
+            <table class="specs-preview-table">
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody id="specsPreviewBody">
+                    <!-- Filled via JS -->
+                </tbody>
+            </table>
+
+            <div class="section-title">Warranty Information</div>
+            <table class="details-table">
+                <tr>
+                    <td class="label">Solar Panel Warranty:</td>
+                    <td>30 Years</td>
+                </tr>
+                <tr>
+                    <td class="label">Inverter Warranty:</td>
+                    <td>10 Years</td>
+                </tr>
+            </table>
+
+            <div class="section-title">Additional Works Included</div>
+            <ul class="works-list">
+                <li>Net Metering Support</li>
+                <li>Civil Work</li>
+                <li>Installation & Commissioning</li>
+                <li>Price includes materials, installation and commissioning</li>
+                <li>Net meter approval depends on electricity board approval</li>
+                <li>Transportation within city limits included</li>
+            </ul>
+
+            <div class="cost-box">
+                <p class="cost-label">Total Project Cost (Including GST)</p>
+                <p class="cost-value">₹ <span id="previewCost"></span></p>
+            </div>
+
+            <div class="section-title">Terms & Conditions</div>
+            <ol class="terms-list">
+                <li>Engineering and design including plant capacity determination, material balance, SLD, layouts,
+                    string design, cable sizing and structure design.</li>
+                <li>Procurement of solar panels, inverters, structures and balance of materials with verification of
+                    specifications.</li>
+                <li>Installation of mounting structures and solar PV modules.</li>
+                <li>Electrical work including panel interconnections, MC4 connections, cable trench, inverter, DCDB and
+                    ACDB installation.</li>
+                <li>Lightning arrestor installation and earthing pit work as per Indian standards with resistance
+                    testing.</li>
+                <li>Complete system testing, electrical inspection and plant handover.</li>
+                <li>Warranty includes PV module manufacturer warranty up to 25 years and inverter warranty 5–10 years.
+                </li>
+                <li>Payment terms: 70% before material dispatch and 30% before PV module installation.</li>
+                <li>Client must provide shadow-free space, storage area, electricity, water, internet for monitoring, LT
+                    panel and net metering arrangements.</li>
+                <li>Installation within 15–30 days after advance payment and approvals. Price valid for 7 days.
+                    Cancellation free within 7 days, after that 15% charge applies and no refund after material
+                    dispatch.</li>
+            </ol>
+
+            <footer class="quotation-footer">
+                <p>Generated on: <span id="footerDateTime"></span></p>
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+</body>
+
+</html>

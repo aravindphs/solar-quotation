@@ -1,0 +1,435 @@
+:root {
+    --primary-color: #003366;
+    --secondary-color: #000000;
+    --accent-color: #1eb55c;
+    /* Emerald Green from logo */
+    --accent-light: #e8f5e9;
+    --bg-color: #f8fafc;
+    --white: #ffffff;
+    --border-color: #e2e8f0;
+    --text-color: #1e293b;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* App Layout */
+.app-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    border-radius: 12px;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.app-header h1 {
+    color: var(--primary-color);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #16a34a;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.btn-secondary:hover {
+    background-color: #e2e8f0;
+}
+
+/* Form Styles */
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section h2 {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #1e293b;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(30, 181, 92, 0.1);
+}
+
+#specsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#specsTable th,
+#specsTable td {
+    border: 1px solid var(--border-color);
+    padding: 12px;
+}
+
+#specsTable th {
+    background-color: #f8fafc;
+    text-align: left;
+    font-weight: 600;
+    color: #475569;
+}
+
+#specsTable input {
+    width: 100%;
+    border: 1px solid transparent;
+    padding: 4px;
+    background: transparent;
+}
+
+#specsTable input:hover {
+    background: #f1f5f9;
+}
+
+.cost-input-wrapper {
+    background: var(--accent-light);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px dashed var(--accent-color);
+}
+
+.cost-input {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+}
+
+.cost-input span {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.cost-input input {
+    font-size: 2rem;
+    font-weight: 800;
+    width: 250px;
+    border: none;
+    background: transparent;
+    color: var(--accent-color);
+    border-bottom: 3px solid var(--accent-color);
+    padding: 5px;
+    text-align: center;
+}
+
+/* Quotation Preview Area */
+#quotationPreview {
+    display: none;
+    margin-top: 50px;
+}
+
+/* Print Styling */
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    #quotationPreview {
+        display: block !important;
+        margin: 0;
+        width: 100%;
+    }
+
+    .quotation-page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 20mm;
+        margin: 0 auto;
+        background: white;
+        color: black;
+        position: relative;
+    }
+
+    .quotation-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 4px solid var(--accent-color);
+    }
+
+    .company-logo {
+        height: 70px;
+        width: auto;
+    }
+
+    .header-right {
+        text-align: right;
+    }
+
+    .company-brand {
+        color: var(--accent-color);
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .company-phone {
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .quotation-title-container {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    .quotation-title {
+        color: var(--accent-color);
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .quotation-no {
+        text-align: right;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #444;
+        margin-top: 10px;
+    }
+
+    .section-title {
+        color: var(--accent-color);
+        font-weight: 800;
+        font-size: 1.15rem;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ddd;
+        text-transform: capitalize;
+    }
+
+    .details-table {
+        width: 100%;
+        margin-bottom: 15px;
+        border-collapse: collapse;
+    }
+
+    .details-table td {
+        padding: 10px 0;
+        font-size: 1rem;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .details-table td.label {
+        width: 180px;
+        font-weight: 700;
+        color: #475569;
+    }
+
+    .specs-preview-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 25px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .specs-preview-table th,
+    .specs-preview-table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+
+    .specs-preview-table th {
+        background-color: var(--accent-color);
+        color: white;
+        text-align: left;
+        font-weight: 700;
+    }
+
+    .specs-preview-table tr:nth-child(even) {
+        background-color: #f8fafc;
+    }
+
+    .works-list {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 25px;
+    }
+
+    .works-list li {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+    }
+
+    .works-list li::before {
+        content: "•";
+        color: var(--accent-color);
+        font-weight: 800;
+        font-size: 1.5rem;
+        margin-right: 12px;
+    }
+
+    .cost-box {
+        background-color: var(--accent-light);
+        border: 1px solid var(--accent-color);
+        border-radius: 12px;
+        text-align: center;
+        padding: 20px;
+        margin: 30px 0;
+    }
+
+    .cost-label {
+        font-size: 1.1rem;
+        color: #475569;
+        margin-bottom: 8px;
+    }
+
+    .cost-value {
+        font-size: 2.75rem;
+        font-weight: 800;
+        color: var(--accent-color);
+    }
+
+    .terms-list {
+        padding-left: 18px;
+        font-size: 0.85rem;
+        color: #334155;
+    }
+
+    .terms-list li {
+        margin-bottom: 6px;
+        line-height: 1.4;
+    }
+
+    .quotation-footer {
+        margin-top: 40px;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 15px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #64748b;
+    }
+}
+
+/* Screen Preview Toggle */
+.preview-mode .app-container {
+    display: none;
+}
+
+.preview-mode #quotationPreview {
+    display: block !important;
+}
+
+.preview-mode body {
+    background-color: #e2e8f0;
+}
+
+.preview-mode .quotation-page {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+}
+
+.preview-actions {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
