@@ -58,7 +58,14 @@
                             </tr>
                             <tr>
                                 <td>Solar Panel Model</td>
-                                <td><input type="text" id="spec-panel-model" value="Adani"></td>
+                                <td>
+                                    <select id="spec-panel-model">
+                                        <option value="Adani">Adani</option>
+                                        <option value="Waaree">Waaree</option>
+                                        <option value="Vikram">Vikram</option>
+                                        <option value="Tata">Tata</option>
+                                    </select>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Number of Panels</td>
@@ -99,6 +106,10 @@
                     </div>
                 </div>
             </section>
+
+            <div class="bottom-actions">
+                <button id="generateBottomBtn" class="btn btn-primary btn-large">Generate & Download Quotation</button>
+            </div>
         </main>
     </div>
 
@@ -108,6 +119,13 @@
             <button id="backBtn" class="btn btn-secondary">← Back to Editor</button>
             <button id="printPreviewBtn" class="btn btn-primary">Print Now</button>
         </div>
+
+        <!-- NEW: Cover Page Section -->
+        <div class="cover-page">
+            <img src="cover_image.jpeg" alt="Cover Page" class="cover-img-full">
+        </div>
+        <!-- End Cover Page -->
+
         <div class="quotation-page">
             <div class="quotation-header">
                 <div class="header-left">
@@ -152,7 +170,7 @@
                     <!-- Filled via JS -->
                 </tbody>
             </table>
-<br>
+            <br>
             <div class="section-title">Warranty Information</div>
             <table class="details-table">
                 <tr>

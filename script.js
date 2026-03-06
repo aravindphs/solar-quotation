@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const backBtn = document.getElementById('backBtn');
     const printPreviewBtn = document.getElementById('printPreviewBtn');
 
+    const generateBottomBtn = document.getElementById('generateBottomBtn');
+
     // Initialize values
     const today = new Date();
     dateInput.value = today.toISOString().split('T')[0];
@@ -32,8 +34,26 @@ document.addEventListener('DOMContentLoaded', () => {
         generateQuotation();
     });
 
+    generateBottomBtn.addEventListener('click', () => {
+        generateQuotation();
+        // Trigger auto download after a short delay to allow DOM to update
+        setTimeout(() => {
+            printQuotationFunc();
+        }, 500);
+    });
+
     const printQuotationFunc = () => {
+        // Set document title so browser uses Customer Name as default filename
+        const customerName = customerNameInput.value.trim() || 'Solar_Quotation';
+        const originalTitle = document.title;
+        document.title = customerName;
+
         window.print();
+
+        // Restore title after print dialog closes
+        setTimeout(() => {
+            document.title = originalTitle;
+        }, 100);
     };
 
     printBtn.addEventListener('click', printQuotationFunc);
@@ -80,7 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         specInputs.forEach(row => {
             const specName = row.cells[0].textContent;
-            const specValue = row.querySelector('input').value;
+            const inputEl = row.querySelector('input, select');
+            const specValue = inputEl ? inputEl.value : '';
 
             const newRow = document.createElement('tr');
             newRow.innerHTML = `

@@ -196,6 +196,29 @@ input:focus {
     text-align: center;
 }
 
+#specsTable select {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 0.95rem;
+    background-color: var(--white);
+}
+
+.bottom-actions {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.btn-large {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* Quotation Preview Area */
 #quotationPreview {
     display: none;
@@ -418,6 +441,183 @@ input:focus {
 .preview-mode .quotation-page {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     margin: 40px auto;
+}
+
+/* Page Break for Print */
+.cover-page {
+    page-break-after: always;
+}
+
+/* Cover Page Premium Styling - Full Image */
+.cover-page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    background: white;
+}
+
+.cover-img-full {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Reset height for screen preview to keep aspect ratio */
+.preview-mode .cover-page {
+    height: auto;
+    aspect-ratio: 210/297;
+}
+
+.cover-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: var(--accent-color);
+}
+
+.cover-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.cover-header img {
+    height: 100px;
+}
+
+.cover-content {
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cover-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.cover-subtitle {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 50px;
+}
+
+.solar-illustration {
+    position: relative;
+    height: 200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.sun-glow {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.panels-stage {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.panel {
+    width: 100px;
+    height: 140px;
+    background: linear-gradient(180deg, #1e3a8a 0%, #1e40af 100%);
+    border: 3px solid #60a5fa;
+    border-radius: 4px;
+    transform: perspective(500px) rotateX(45deg);
+    position: relative;
+}
+
+.panel::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.cover-footer {
+    text-align: center;
+    border-top: 2px solid var(--accent-color);
+    padding-top: 30px;
+}
+
+.cover-company-name {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.cover-tagline {
+    font-size: 1.1rem;
+    color: #475569;
+    font-weight: 600;
+}
+
+.cover-location {
+    font-size: 1rem;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.cover-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.icon-item {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1e293b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon-item span {
+    font-size: 1.5rem;
+}
+
+/* Page Break for Print */
+@media print {
+    .cover-page {
+        page-break-after: always;
+        display: block !important;
+        height: 297mm;
+    }
 }
 
 .preview-actions {
