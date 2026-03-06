@@ -319,6 +319,10 @@ input:focus {
         text-transform: capitalize;
     }
 
+    .warr-top {
+        margin-top: 200px;
+    }
+
     .details-table {
         width: 100%;
         margin-bottom: 15px;
