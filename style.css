@@ -205,11 +205,43 @@ input:focus {
     background-color: var(--white);
 }
 
+.delete-spec-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: #e53e3e;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.delete-spec-btn:hover {
+    background: #fff5f5;
+}
+
 .bottom-actions {
     margin-top: 40px;
     display: flex;
     justify-content: center;
     padding-bottom: 20px;
+}
+
+.table-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+}
+
+.icon {
+    margin-right: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .btn-large {

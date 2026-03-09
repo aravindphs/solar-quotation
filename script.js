@@ -16,11 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const quotationNoDisplay = document.getElementById('quotationNoDisplay');
     const footerDateTime = document.getElementById('footerDateTime');
     const specsPreviewBody = document.getElementById('specsPreviewBody');
+    const editorSpecsBody = document.getElementById('editorSpecsBody');
 
     const backBtn = document.getElementById('backBtn');
     const printPreviewBtn = document.getElementById('printPreviewBtn');
 
     const generateBottomBtn = document.getElementById('generateBottomBtn');
+    const addSpecBtn = document.getElementById('addSpecBtn');
+    const projectTypeSelect = document.getElementById('spec-project-type');
+    const batteryRow = document.getElementById('batteryRow');
 
     // Initialize values
     const today = new Date();
@@ -64,6 +68,35 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('preview-mode');
     });
 
+    // Project Type Change Logic
+    projectTypeSelect.addEventListener('change', () => {
+        const type = projectTypeSelect.value;
+        if (type === 'Off-Grid' || type === 'Hybrid') {
+            batteryRow.style.display = 'table-row';
+        } else {
+            batteryRow.style.display = 'none';
+        }
+    });
+
+    // Add Specification Row logic
+    addSpecBtn.addEventListener('click', () => {
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td><input type="text" placeholder="Spec Name"></td>
+            <td><input type="text" placeholder="Details"></td>
+            <td><button class="delete-spec-btn">🗑️</button></td>
+        `;
+        editorSpecsBody.appendChild(newRow);
+    });
+
+    // Delete Specification Logic (Event Delegation)
+    editorSpecsBody.addEventListener('click', (e) => {
+        if (e.target.classList.contains('delete-spec-btn')) {
+            const row = e.target.closest('tr');
+            row.remove();
+        }
+    });
+
     function updateQuotationNumber() {
         let currentID = localStorage.getItem('lastQuotationID');
         if (!currentID) {
@@ -95,20 +128,41 @@ document.addEventListener('DOMContentLoaded', () => {
         previewCost.textContent = projectCostInput.value || '0';
 
         // Update Specs Table in Preview
-        const specInputs = document.querySelectorAll('#specsTable tbody tr');
+        const specRows = editorSpecsBody.querySelectorAll('tr');
         specsPreviewBody.innerHTML = '';
 
-        specInputs.forEach(row => {
-            const specName = row.cells[0].textContent;
-            const inputEl = row.querySelector('input, select');
-            const specValue = inputEl ? inputEl.value : '';
+        specRows.forEach(row => {
+            // Skip hidden rows (like Battery if On-Grid)
+            if (row.style.display === 'none') return;
 
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td>${specName}</td>
-                <td>${specValue}</td>
-            `;
-            specsPreviewBody.appendChild(newRow);
+            let specName, specValue;
+
+            // Check if it's the Project Type row (contains a select)
+            const selectEl = row.querySelector('select');
+            if (selectEl) {
+                specName = row.cells[0].textContent;
+                specValue = selectEl.value;
+            } else {
+                // Check if it's a dynamic row with input in both cells
+                const inputs = row.querySelectorAll('input');
+                if (inputs.length === 2) {
+                    specName = inputs[0].value;
+                    specValue = inputs[1].value;
+                } else if (inputs.length === 1) {
+                    // Regular static row
+                    specName = row.cells[0].textContent;
+                    specValue = inputs[0].value;
+                }
+            }
+
+            if (specName && specValue) {
+                const newRow = document.createElement('tr');
+                newRow.innerHTML = `
+                    <td>${specName}</td>
+                    <td>${specValue}</td>
+                `;
+                specsPreviewBody.appendChild(newRow);
+            }
         });
 
         // Update Footer Date/Time

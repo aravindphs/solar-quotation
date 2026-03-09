@@ -54,50 +54,73 @@
                             <tr>
                                 <th>Specification</th>
                                 <th>Details</th>
+                                <th style="width: 50px;">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="editorSpecsBody">
+                            <tr>
+                                <td>Project Type</td>
+                                <td>
+                                    <select id="spec-project-type">
+                                        <option value="On-Grid" selected>On-Grid</option>
+                                        <option value="Off-Grid">Off-Grid</option>
+                                        <option value="Hybrid">Hybrid</option>
+                                    </select>
+                                </td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
+                            </tr>
+                            <tr id="batteryRow" style="display: none;">
+                                <td>Battery</td>
+                                <td><input type="text" id="spec-battery" placeholder="Enter battery details"></td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
+                            </tr>
                             <tr>
                                 <td>System Capacity</td>
                                 <td><input type="text" id="spec-capacity" value="3 KW"></td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
                             </tr>
                             <tr>
                                 <td>Solar Panel Model</td>
-                                <td>
-                                    <select id="spec-panel-model">
-                                        <option value="Adani">Adani</option>
-                                        <option value="Waaree">Waaree</option>
-                                        <option value="Vikram">Vikram</option>
-                                        <option value="Tata">Tata</option>
-                                    </select>
-                                </td>
+                                <td><input type="text" id="spec-panel-model" value="Adani"></td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
                             </tr>
                             <tr>
                                 <td>Number of Panels</td>
                                 <td><input type="text" id="spec-panel-count" value="6"></td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
                             </tr>
                             <tr>
                                 <td>Inverter Brand / Model</td>
                                 <td><input type="text" id="spec-inverter-brand" value="Polycab"></td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
                             </tr>
                             <tr>
                                 <td>Inverter Capacity</td>
                                 <td><input type="text" id="spec-inverter-capacity" value="5 KW"></td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
                             </tr>
                             <tr>
                                 <td>Structure Material</td>
                                 <td><input type="text" id="spec-structure" value="GI"></td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
                             </tr>
                             <tr>
                                 <td>Wire Brand</td>
                                 <td><input type="text" id="spec-wire" value="Polycab"></td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
                             </tr>
                             <tr>
                                 <td>Earthing System</td>
                                 <td><input type="text" id="spec-earthing" value="3 Earthing"></td>
+                                <td><button class="delete-spec-btn">🗑️</button></td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="table-actions">
+                    <button id="addSpecBtn" class="btn btn-secondary btn-sm">
+                        <span class="icon">+</span> Add New Specification
+                    </button>
                 </div>
             </section>
 
